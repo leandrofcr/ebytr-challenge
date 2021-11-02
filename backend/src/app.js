@@ -9,5 +9,6 @@ app.get('/', (_request, response) => {
 });
 
 app.use('/users', usersRoute);
+app.use('/login', usersRoute);
 
 module.exports = app;
