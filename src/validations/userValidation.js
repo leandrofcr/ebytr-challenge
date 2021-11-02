@@ -1,5 +1,7 @@
 const Joi = require('joi');
 
+const { checkExistence } = require('../model/usersModel');
+
 const userDataEntries = (userData) => {
   const { error } = Joi.object({
     name: Joi.string().min(3).not().empty().required(),
@@ -13,6 +15,14 @@ const userDataEntries = (userData) => {
   return {};
 };
 
+const emailRegistered = async (email) => {
+  const alreadyRegistered = await checkExistence(email);
+  if (alreadyRegistered)
+    return { emailConflict: true, message: 'Email already registered' };
+  return {};
+};
+
 module.exports = {
-  userDataEntries
+  userDataEntries,
+  emailRegistered
 };
