@@ -33,7 +33,23 @@ const getAllTasks = async (_req, res) => {
   }
 };
 
+const updateTask = async (req, res) => {
+  try {
+    const { userId } = req;
+    const { task, status, taskId } = req.body;
+
+    const result = await taskService.updateTask(userId, task, status, taskId);
+    if (result.message) return res.status(BAD_REQUEST).json(result);
+
+    return res.status(OK).json(result);
+  } catch (error) {
+    console.log(error.message);
+    return res.status(INTERNAL_SERVER_ERROR).send('Something went wrong :(');
+  }
+};
+
 module.exports = {
   createTask,
-  getAllTasks
+  getAllTasks,
+  updateTask
 };

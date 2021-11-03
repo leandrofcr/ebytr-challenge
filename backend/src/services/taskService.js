@@ -20,7 +20,15 @@ const createTask = async (userId, task, status) => {
 
 const getAllTasks = async () => taskModel.getAllTasks();
 
+const updateTask = async (userId, task, status, taskId) => {
+  const taskEntries = checkTaskEntries(task, status);
+  if (taskEntries.message) return taskEntries;
+
+  return taskModel.updateTask({ task, status, userId, taskId });
+};
+
 module.exports = {
   createTask,
-  getAllTasks
+  getAllTasks,
+  updateTask
 };

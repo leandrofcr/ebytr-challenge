@@ -1,3 +1,5 @@
+const { ObjectId } = require('mongodb');
+
 const { getConnection } = require('./connection');
 
 const createTask = async ({ task, status, userId, createdAt }) => {
@@ -14,7 +16,22 @@ const getAllTasks = async () => {
   return db.collection('tasks').find().toArray();
 };
 
+const updateTask = async ({ task, status, userId, taskId }) => {
+  const db = await getConnection();
+  const updatedTask = await db
+    .collection('tasks')
+    .findOneAndUpdate(
+      { _id: ObjectId(taskId) },
+      { $set: { task, status, userId } },
+      { returnDocument: 'after' }
+    );
+
+  console.log(updatedTask);
+  return { ...updatedTask.value, userId };
+};
+
 module.exports = {
   createTask,
-  getAllTasks
+  getAllTasks,
+  updateTask
 };
