@@ -1,4 +1,9 @@
-const { CREATED, INTERNAL_SERVER_ERROR, BAD_REQUEST } = require('http-status');
+const {
+  CREATED,
+  INTERNAL_SERVER_ERROR,
+  BAD_REQUEST,
+  OK
+} = require('http-status');
 
 const taskService = require('../services/taskService');
 
@@ -17,6 +22,18 @@ const createTask = async (req, res) => {
   }
 };
 
+const getAllTasks = async (_req, res) => {
+  try {
+    const tasks = await taskService.getAllTasks();
+
+    return res.status(OK).json(tasks);
+  } catch (err) {
+    console.log(err.message);
+    return res.status(INTERNAL_SERVER_ERROR).json('Something went wrong :(');
+  }
+};
+
 module.exports = {
-  createTask
+  createTask,
+  getAllTasks
 };

@@ -17,6 +17,10 @@ const createTask = async (userId, task, status) => {
 
   return createdTask;
 };
+
+const getAllTasks = async () => taskModel.getAllTasks();
+
 module.exports = {
-  createTask
+  createTask,
+  getAllTasks
 };
