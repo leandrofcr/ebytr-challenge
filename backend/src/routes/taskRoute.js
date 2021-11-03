@@ -3,7 +3,8 @@ const validateJWT = require('../auth/validateJWT');
 const {
   createTask,
   getAllTasks,
-  updateTask
+  updateTask,
+  removeTask
 } = require('../controllers/taskController');
 
 const router = express.Router();
@@ -12,6 +13,7 @@ router
   .route('/')
   .post(validateJWT, createTask)
   .get(validateJWT, getAllTasks)
-  .put(validateJWT, updateTask);
+  .put(validateJWT, updateTask)
+  .delete(validateJWT, removeTask);
 
 module.exports = router;

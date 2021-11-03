@@ -30,8 +30,18 @@ const updateTask = async ({ task, status, userId, taskId }) => {
   return { ...updatedTask.value, userId };
 };
 
+const removeTask = async (taskId) => {
+  const db = await getConnection();
+  const task = await db
+    .collection('tasks')
+    .findOneAndDelete({ _id: ObjectId(taskId) });
+
+  return task.value;
+};
+
 module.exports = {
   createTask,
   getAllTasks,
-  updateTask
+  updateTask,
+  removeTask
 };

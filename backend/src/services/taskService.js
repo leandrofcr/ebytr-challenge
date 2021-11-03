@@ -27,8 +27,16 @@ const updateTask = async (userId, task, status, taskId) => {
   return taskModel.updateTask({ task, status, userId, taskId });
 };
 
+const removeTask = async (taskId) => {
+  const task = await taskModel.removeTask(taskId);
+  if (!task) return { message: 'task not found' };
+
+  return {};
+};
+
 module.exports = {
   createTask,
   getAllTasks,
-  updateTask
+  updateTask,
+  removeTask
 };
