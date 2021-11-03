@@ -4,7 +4,7 @@ const { UNAUTHORIZED, OK, INTERNAL_SERVER_ERROR } = require('http-status');
 
 const loginService = require('../services/loginService');
 
-const secret = process.env.SECRET || 'notSoSecret';
+const secret = process.env.JWT_SECRET;
 const jwtConfig = {
   expiresIn: '1d',
   algorithm: 'HS256'
