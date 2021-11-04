@@ -2,6 +2,8 @@ import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import axios from 'axios';
 
+import { AiOutlineDelete, AiOutlineEdit, AiOutlineSave } from 'react-icons/ai';
+
 const EDIT_ENDPOINT = 'http://localhost:3000/tasks';
 
 function Card({ data, updateTasks }) {
@@ -24,6 +26,20 @@ function Card({ data, updateTasks }) {
 
   return (
     <>
+      <section>
+        <button>
+          <AiOutlineDelete />
+        </button>
+        <button
+          type="button"
+          onClick={({ target }) => {
+            setShowEditInput(!showEditInput);
+            handleUpdate(target, data._id);
+          }}
+        >
+          {showEditInput ? <AiOutlineSave /> : <AiOutlineEdit />}
+        </button>
+      </section>
       {!showEditInput && (
         <div>
           <span>{data.status}</span>
@@ -65,15 +81,6 @@ function Card({ data, updateTasks }) {
           </select>
         </form>
       )}
-      <button
-        type="button"
-        onClick={({ target }) => {
-          setShowEditInput(!showEditInput);
-          handleUpdate(target, data._id);
-        }}
-      >
-        {showEditInput ? 'Salvar' : 'Editar'}
-      </button>
     </>
   );
 }

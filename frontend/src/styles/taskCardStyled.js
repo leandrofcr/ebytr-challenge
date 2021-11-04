@@ -17,8 +17,28 @@ const CardTaskStyled = styled.section`
   span {
     font-style: italic;
     position: absolute;
-    right: 10px;
+    left: 10px;
     top: 5px;
+  }
+
+  section {
+    position: absolute;
+    top: 5px;
+    right: 5px;
+
+    button {
+      background-color: whitesmoke;
+      border: none;
+      color: #676cdb;
+
+      &:first-child {
+        color: #f86a60;
+      }
+
+      svg {
+        font-size: 20px;
+      }
+    }
   }
 `;
 
