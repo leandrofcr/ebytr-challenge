@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import TaskCard from '../components/taskCard';
+import CardWrapper from '../styles/cardWrapper';
 
 const ENDPOINT = 'http://localhost:3000/tasks';
 
@@ -23,7 +24,9 @@ function Main() {
   return (
     <>
       <h2>Tarefas</h2>
-      <TaskCard tasks={tasks} />
+      <CardWrapper>
+        <TaskCard tasks={tasks} />
+      </CardWrapper>
     </>
   );
 }

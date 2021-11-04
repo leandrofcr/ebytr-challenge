@@ -1,15 +1,17 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import CardTaskStyled from '../styles/taskCardStyled';
 
 function TaskCard({ tasks }) {
   return (
     <>
       {tasks.map((el, idx) => {
         return (
-          <div key={idx}>
+          <CardTaskStyled key={idx}>
+            <span>{el.status}</span>
             <p>{el.task}</p>
-            <span>{`${el.createdAt} - ${el.userId}`}</span>
-          </div>
+            <code>{`${el.createdAt} - ${el.userId}`}</code>
+          </CardTaskStyled>
         );
       })}
     </>
