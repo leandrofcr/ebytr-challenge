@@ -1,15 +1,24 @@
 import React, { useState } from 'react';
+import axios from 'axios';
 
 import CreateTaskWrapper from '../styles/createTaskWrapper';
+
+const ENDPOINT = 'http://localhost:3000/tasks';
 
 function CreateTask() {
   const [task, setTask] = useState('');
   const [username, setUsername] = useState('');
   const [status, setStatus] = useState('pendente');
 
-  const handleSubmit = () => {
-    console.log(task, status, username);
+  const handleSubmit = async () => {
+    const { data } = await axios.post(ENDPOINT, {
+      task,
+      status
+    });
+    console.log(data);
   };
+
+  console.log(username);
 
   return (
     <CreateTaskWrapper>
