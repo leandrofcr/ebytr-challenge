@@ -10,10 +10,10 @@ const taskService = require('../services/taskService');
 
 const createTask = async (req, res) => {
   try {
-    const { userId } = req;
-    const { task, status } = req.body;
+    // const { userId } = req;
+    const { task, status, username } = req.body;
 
-    const result = await taskService.createTask(userId, task, status);
+    const result = await taskService.createTask(username, task, status);
     if (result.message) return res.status(BAD_REQUEST).json(result);
 
     return res.status(CREATED).json(result);
@@ -36,10 +36,10 @@ const getAllTasks = async (_req, res) => {
 
 const updateTask = async (req, res) => {
   try {
-    const { userId } = req;
-    const { task, status, taskId } = req.body;
+    // const { userId } = req;
+    const { task, status, taskId, username } = req.body;
 
-    const result = await taskService.updateTask(userId, task, status, taskId);
+    const result = await taskService.updateTask(username, task, status, taskId);
     if (result.message) return res.status(BAD_REQUEST).json(result);
 
     return res.status(OK).json(result);

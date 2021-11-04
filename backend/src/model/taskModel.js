@@ -2,13 +2,13 @@ const { ObjectId } = require('mongodb');
 
 const { getConnection } = require('./connection');
 
-const createTask = async ({ task, status, userId, createdAt }) => {
+const createTask = async ({ task, status, username, createdAt }) => {
   const db = await getConnection();
   const { insertedId } = await db
     .collection('tasks')
-    .insertOne({ task, status, userId, createdAt });
+    .insertOne({ task, status, username, createdAt });
 
-  return { id: insertedId, task, status, createTask, userId };
+  return { id: insertedId, task, status, createTask, username };
 };
 
 const getAllTasks = async () => {
@@ -16,18 +16,17 @@ const getAllTasks = async () => {
   return db.collection('tasks').find().toArray();
 };
 
-const updateTask = async ({ task, status, userId, taskId }) => {
+const updateTask = async ({ task, status, username, taskId }) => {
   const db = await getConnection();
   const updatedTask = await db
     .collection('tasks')
     .findOneAndUpdate(
       { _id: ObjectId(taskId) },
-      { $set: { task, status, userId } },
+      { $set: { task, status, username } },
       { returnDocument: 'after' }
     );
 
-  console.log(updatedTask);
-  return { ...updatedTask.value, userId };
+  return { ...updatedTask.value, username };
 };
 
 const removeTask = async (taskId) => {
