@@ -36,7 +36,6 @@ const getAllTasks = async (_req, res) => {
 
 const updateTask = async (req, res) => {
   try {
-    // const { userId } = req;
     const { task, status, taskId, username } = req.body;
 
     const result = await taskService.updateTask(username, task, status, taskId);
@@ -52,7 +51,6 @@ const updateTask = async (req, res) => {
 const removeTask = async (req, res) => {
   try {
     const { taskId } = req.body;
-
     const result = await taskService.removeTask(taskId);
     if (result.message) return res.status(BAD_REQUEST).json(result);
 
