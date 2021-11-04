@@ -28,7 +28,6 @@ function Main() {
       <CardWrapper>
         <TaskCard tasks={tasks} />
       </CardWrapper>
-
       <CreateTask />
     </>
   );
