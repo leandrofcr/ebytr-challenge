@@ -11,12 +11,15 @@ function CreateTask() {
   const [status, setStatus] = useState('pendente');
 
   const handleSubmit = async () => {
-    const { data } = await axios.post(ENDPOINT, {
-      username,
-      task,
-      status
-    });
-    console.log(data);
+    try {
+      await axios.post(ENDPOINT, {
+        username,
+        task,
+        status
+      });
+    } catch (error) {
+      console.log(error);
+    }
   };
 
   return (

@@ -4,7 +4,7 @@ import axios from 'axios';
 
 import { AiOutlineDelete, AiOutlineEdit, AiOutlineSave } from 'react-icons/ai';
 
-const EDIT_ENDPOINT = 'http://localhost:3000/tasks';
+const TASK_ENDPOINT = 'http://localhost:3000/tasks';
 
 function Card({ data, updateTasks }) {
   const [showEditInput, setShowEditInput] = useState(false);
@@ -12,29 +12,44 @@ function Card({ data, updateTasks }) {
   const [username, setUsername] = useState(data.username);
   const [status, setStatus] = useState('pendente');
 
-  const handleUpdate = async (target, taskId) => {
-    if (target.textContent === 'Salvar') {
-      updateTasks({ taskId, task, username, status });
-      await axios.put(EDIT_ENDPOINT, {
+  const handleUpdate = async (taskId) => {
+    updateTasks({ taskId, task, username, status });
+    try {
+      await axios.put(TASK_ENDPOINT, {
         taskId,
         task,
         username,
         status
       });
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  const handleRemove = async (taskId) => {
+    try {
+      await axios.delete(TASK_ENDPOINT, { data: { taskId } });
+    } catch (error) {
+      console.log(error);
     }
   };
 
   return (
     <>
       <section>
-        <button>
-          <AiOutlineDelete />
+        <button
+          type="button"
+          onClick={() => {
+            handleRemove(data._id);
+          }}
+        >
+          <AiOutlineDelete>Editar</AiOutlineDelete>
         </button>
         <button
           type="button"
-          onClick={({ target }) => {
+          onClick={() => {
             setShowEditInput(!showEditInput);
-            handleUpdate(target, data._id);
+            handleUpdate(data._id);
           }}
         >
           {showEditInput ? <AiOutlineSave /> : <AiOutlineEdit />}

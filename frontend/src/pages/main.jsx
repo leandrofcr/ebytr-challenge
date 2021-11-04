@@ -26,7 +26,6 @@ function Main() {
   const updateTasks = ({ taskId, task, status, username }) => {
     const updatedTasks = tasks.map((el) => {
       if (el._id === taskId) {
-        console.log(status);
         return { ...el, _id: taskId, task, status, username };
       }
       return el;
