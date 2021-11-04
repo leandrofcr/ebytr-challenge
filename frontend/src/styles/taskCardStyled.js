@@ -5,7 +5,7 @@ const CardTaskStyled = styled.section`
   color: black;
   display: flex;
   flex-direction: column;
-  width: 300px;
+  width: 330px;
   margin: 10px;
   padding: 20px;
   border-radius: 15px;
@@ -21,15 +21,23 @@ const CardTaskStyled = styled.section`
     top: 5px;
   }
 
+  input {
+    margin: 0 10px;
+  }
+
   section {
     position: absolute;
     top: 5px;
     right: 5px;
 
     button {
-      background-color: whitesmoke;
+      background-color: transparent;
       border: none;
       color: #676cdb;
+      transition: transform 0.3s;
+      &:hover {
+        transform: scale(1.1);
+      }
 
       &:first-child {
         color: #f86a60;
