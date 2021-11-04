@@ -30,26 +30,16 @@ function CreateTask() {
             onChange={({ target }) => setUsername(target.value)}
           />
         </label>
-        <select name="status" id="status">
-          <option
-            value="Pendente"
-            defaultChecked
-            onChange={({ target }) => setStatus(target.value)}
-          >
+        <select
+          name="status"
+          id="status"
+          onChange={({ target }) => setStatus(target.value)}
+        >
+          <option value="Pendente" defaultChecked>
             Pendente
           </option>
-          <option
-            value="Em Andamento"
-            onChange={({ target }) => setStatus(target.value)}
-          >
-            Em andamento
-          </option>
-          <option
-            value="Finalizada"
-            onChange={({ target }) => setStatus(target.value)}
-          >
-            Finalizada
-          </option>
+          <option value="Em Andamento">Em andamento</option>
+          <option value="Finalizada">Finalizada</option>
         </select>
 
         <button type="button" onClick={() => handleSubmit()}>

@@ -1,16 +1,15 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import CardTaskStyled from '../styles/taskCardStyled';
+import Card from './card';
 
-function TaskCard({ tasks }) {
+function TaskCard({ tasks, updateTasks }) {
   return (
     <>
       {tasks.map((el, idx) => {
         return (
           <CardTaskStyled key={idx}>
-            <span>{el.status}</span>
-            <p>{el.task}</p>
-            <code>{`${el.createdAt} - ${el.userId}`}</code>
+            <Card data={el} updateTasks={updateTasks} />
           </CardTaskStyled>
         );
       })}
@@ -19,7 +18,8 @@ function TaskCard({ tasks }) {
 }
 
 TaskCard.propTypes = {
-  tasks: PropTypes.array
+  tasks: PropTypes.array,
+  updateTasks: PropTypes.func
 };
 
 export default TaskCard;

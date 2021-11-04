@@ -22,11 +22,22 @@ function Main() {
     getData();
   }, []);
 
+  const updateTasks = ({ taskId, task, status, username }) => {
+    const updatedTasks = tasks.map((el) => {
+      if (el._id === taskId) {
+        console.log(status);
+        return { ...el, _id: taskId, task, status, username };
+      }
+      return el;
+    });
+    setTasks(updatedTasks);
+  };
+
   return (
     <>
       <h2>Tarefas</h2>
       <CardWrapper>
-        <TaskCard tasks={tasks} />
+        <TaskCard tasks={tasks} updateTasks={updateTasks} />
       </CardWrapper>
       <CreateTask />
     </>
