@@ -1,15 +1,24 @@
 import React, { useState } from 'react';
 import PropTypes from 'prop-types';
+import axios from 'axios';
+
+const EDIT_ENDPOINT = 'http://localhost:3000/tasks';
 
 function Card({ data, updateTasks }) {
   const [showEditInput, setShowEditInput] = useState(false);
-  const [task, setTask] = useState('');
-  const [username, setUsername] = useState('');
+  const [task, setTask] = useState(data.task);
+  const [username, setUsername] = useState(data.username);
   const [status, setStatus] = useState('pendente');
 
-  const handleUpdate = (target, taskId) => {
+  const handleUpdate = async (target, taskId) => {
     if (target.textContent === 'Salvar') {
       updateTasks({ taskId, task, username, status });
+      await axios.put(EDIT_ENDPOINT, {
+        taskId,
+        task,
+        username,
+        status
+      });
     }
   };
 
@@ -19,7 +28,7 @@ function Card({ data, updateTasks }) {
         <div>
           <span>{data.status}</span>
           <p>{data.task}</p>
-          <code>{`${data.createdAt} - ${data.userId}`}</code>
+          <code>{`${data.createdAt} - ${data.username}`}</code>
         </div>
       )}
 
@@ -38,7 +47,7 @@ function Card({ data, updateTasks }) {
             <input
               type="text"
               id="username"
-              defaultValue={data.userId}
+              defaultValue={data.username}
               onChange={({ target }) => setUsername(target.value)}
             />
           </label>

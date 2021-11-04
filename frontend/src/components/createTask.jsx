@@ -12,13 +12,12 @@ function CreateTask() {
 
   const handleSubmit = async () => {
     const { data } = await axios.post(ENDPOINT, {
+      username,
       task,
       status
     });
     console.log(data);
   };
-
-  console.log(username);
 
   return (
     <CreateTaskWrapper>
