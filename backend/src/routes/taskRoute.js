@@ -1,5 +1,5 @@
 const express = require('express');
-const validateJWT = require('../auth/validateJWT');
+// const validateJWT = require('../auth/validateJWT');
 const {
   createTask,
   getAllTasks,
@@ -11,9 +11,9 @@ const router = express.Router();
 
 router
   .route('/')
-  .post(validateJWT, createTask)
-  .get(validateJWT, getAllTasks)
-  .put(validateJWT, updateTask)
-  .delete(validateJWT, removeTask);
+  .post(createTask)
+  .get(getAllTasks)
+  .put(updateTask)
+  .delete(removeTask);
 
 module.exports = router;
