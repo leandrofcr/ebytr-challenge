@@ -43,7 +43,7 @@ function Card({ data, updateTasks }) {
             handleRemove(data._id);
           }}
         >
-          <AiOutlineDelete>Editar</AiOutlineDelete>
+          <AiOutlineDelete />
         </button>
         <button
           type="button"
