@@ -1,4 +1,4 @@
-# Bem vindo ao desafio técnico Ebytr! :paintbrush:
+# Bem vindo ao desafio técnico Ebytr! :ballot_box_with_check:
 
 ## O que foi desenvolvido
 
@@ -31,18 +31,18 @@ A aplicação possui as seguintes funcionalidades:
 2. Instale as dependências e inicialize o projeto. Para isso, abra uma instância do terminal dentro do diretório backend e outra instância dentro da diretório front end.
   * No diretório *backend*, instale as dependências:
     * `yarn`
-    * or `npm install`
+    * ou `npm install`
   * Inicialize o servidor (uma mensagem dizendo que o servidor está rodando na porta 3000 deve ser exibida no console):
     * `yarn dev`
-    * or `npm run dev`
+    * ou `npm run dev`
 
 
 * No diretório *frontend*, instale as dependências:
     * `yarn`
-    * or `npm install`
+    * ou `npm install`
  * Inicialize a aplicação (uma janela com a aplicação deve abrir no seu navegador):
     * `yarn start`
-    * or `npm start`
+    * ou `npm start`
 
 
 
